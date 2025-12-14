@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: single-pod
+  labels:
+    project: lab-deploy-kubernetes
+spec:
+  containers:
+    - name: web
+      image: basjirayu/lab-deploy-kubernetes:1.0
+      ports:
+        - containerPort: 8080
+
+# Note: For me!!
+# Create the pod in the cluster:
+#   kubectl apply -f pod.yml
+
+# List all pods to verify status (Running, Pending, etc.):
+#   kubectl get pods
+
+# View detailed information about the pod (events, errors, config):
+#   kubectl describe pod single-pod
+
+# Clean up the pod:
+#   kubectl delete pod single-pod
