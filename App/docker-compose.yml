@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  web-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    container_name: container-web-test
+    environment:
+      - NODE_ENV=production
