@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-local
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 31111
+    protocol: TCP
+  selector:
+    project: lab-deploy-kubernetes # match the label on the pod.yml
+  
+# Note: For me!!
+# Apply this service configuration to the cluster:
+#   kubectl apply -f svc-local.yml
+
+# Check the status of the service (look for CLUSTER-IP and EXTERNAL-IP):
+#   kubectl get svc
+
+# Forward a local port to the service for testing (access at localhost:8080):
+#   kubectl port-forward svc/svc-local --address 0.0.0.0 8080:8080
+
+# Clean up the service:
+#   kubectl delete svc svc-local
