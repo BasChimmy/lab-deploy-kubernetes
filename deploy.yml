@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lab-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      project: lab-deploy-kubernetes
+  template:
+    metadata:
+      labels:
+        project: lab-deploy-kubernetes
+    spec:
+      containers:
+        - name: lab-deploy-kubernetes
+          imagePullPolicy: Always
+          image: basjirayu/lab-deploy-kubernetes:1.0
+          ports:
+            - containerPort: 8080
