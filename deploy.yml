@@ -7,14 +7,25 @@ spec:
   selector:
     matchLabels:
       project: lab-deploy-kubernetes
+  minReadySeconds: 20
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       labels:
         project: lab-deploy-kubernetes
+
     spec:
       containers:
         - name: lab-deploy-kubernetes
           imagePullPolicy: Always
-          image: basjirayu/lab-deploy-kubernetes:1.0
+          image: basjirayu/lab-deploy-kubernetes:1.1
           ports:
             - containerPort: 8080
+
+# kubectl apply -f deploy.yml -f svc-local.yml
+# kubectl get all
+# kubectl port-forward svc/svc-local --address 0.0.0.0 8080:8080
